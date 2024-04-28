@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Inline styles for demo purposes -->
+  <style>
+    .project-card {
+      height: 300px; /* Fixed height for demonstration */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    /* Unique background colors for each project */
+    .bg-1 { background-color: #bb9bf6; }
+    .bg-2 { background-color: #fb8a95; }
+    .bg-3 { background-color: #fdb67b; }
+    .bg-4 { background-color: #8bebfe; }
+    .bg-5 { background-color: #91ffcc; }
+    .bg-6 { background-color: #ffe492; }
+    .footer {
+      padding: 20px 0;
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" class="container py-4">
+
+  <!-- Header with Site Logo and Menu -->
+  <header class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
+    <a href="ss.html" class="text-dark text-decoration-none">
+      <span class="fs-4">Sudheer Koki</span>
+    </a>
+    <nav>
+      <a class="me-3 py-2 text-dark text-decoration-none" href="#">About</a>
+      <a class="me-3 py-2 text-dark text-decoration-none" href="#">Sample</a>
+      <a class="me-3 py-2 text-dark text-decoration-none" href="#">Project</a>
+      <a class="me-3 py-2 text-dark text-decoration-none" href="#">Work</a>
+      <a class="py-2 text-dark text-decoration-none" href="#">Search</a>
+    </nav>
+  </header>
+
+  <!-- Main title -->
+  <div class="py-5 text-center">
+    <h1>This is My Project Title Here</h1>
+  </div>
+
+  <!-- Portfolio Projects -->
+  <div class="row g-4">
+    <!-- Project Card -->
+    <div class="col-md-4" v-for="(project, index) in projects" :key="project.id">
+      <div class="project-card rounded-3" :class="['bg-' + (index + 1)]">
+        <h2 class="h5">{{ project.title }}</h2>
+        <p class="px-3">{{ project.description }}</p>
+        <!-- Trigger button for project popup -->
+        <br>
+        <br>
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" :data-bs-target="'#modal' + project.id">
+          More Info
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Modals -->
+  <div v-for="project in projects" :key="project.id" class="modal fade" :id="'modal' + project.id" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">{{ project.title }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{ project.fullDescription }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer mt-5 text-center text-muted">
+    &copy; Sudheer Koki 2024 - Footer links here
+  </footer>
+
+</div>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Vue.js for reactive data -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      projects: [
+        { id: 'project1', title: 'Project 1', description: 'Brief description of project 1', fullDescription: 'Reflect on your project and identify areas for future improvement. Outline a plan for how you will update and maintain your website as your skills and portfolio grow.' },
+        { id: 'project2', title: 'Project 2', description: 'Brief description of project 2', fullDescription: 'Full description of project 2...' },
+        { id: 'project1', title: 'Project 1', description: 'Brief description of project 1', fullDescription: 'Full description of project 3...' },
+        { id: 'project2', title: 'Project 2', description: 'Brief description of project 2', fullDescription: 'Full description of project 4...' },
+        { id: 'project1', title: 'Project 1', description: 'Brief description of project 1', fullDescription: 'Full description of project 5...' },
+        { id: 'project2', title: 'Project 2', description: 'Brief description of project 2', fullDescription: 'Full description of project 6...' },
+        // ... add other projects here
+      ]
+    }
+  });
+</script>
+
+</body>
+</html>
